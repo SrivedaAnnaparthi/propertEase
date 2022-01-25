@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link, Grid, TextField, Button, InputAdornment, Typography } from '@mui/material';
+import {  Grid, TextField, Button, InputAdornment, Typography } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
+import {Link } from "react-router-dom"
+
 
 
 const LoginPage = () => {
 	return (
 		<Grid container style={{ minHeight: '97vh' }}>
+			
+			
 			<Grid
 				container
 				item
@@ -48,9 +52,7 @@ const LoginPage = () => {
 					/>
 					<div style={{ height: 20 }} />
 					<Button type="submit" color="primary" size="small" variant="contained" style={{ width: '30%' }}>
-						<Link href="/home" color="inherit" underline="none">
-							Login
-						</Link>
+						<Link to="/home" style={{textDecoration: "none"}} >Login</Link>
 					</Button>
 				</div>
 			</Grid>

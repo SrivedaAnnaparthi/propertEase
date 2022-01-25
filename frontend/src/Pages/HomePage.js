@@ -1,25 +1,19 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled,  } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import BookIcon from '@mui/icons-material/Book';
-import ArticleIcon from '@mui/icons-material/Article';
-import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Grid } from '@mui/material';
+import { Typography } from '@mui/material';
+import Dashboard from '../Components/DashboardComponents';
 
 
 const drawerWidth = 240;
@@ -72,7 +66,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+const Drawer = styled(MuiDrawer )(
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
@@ -90,93 +84,84 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <Box sx={{ display: 'flex' }}>
+   < Box sx={{ flexGrow: 1, }} >
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-
-
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: '36px',
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-
-          </IconButton>
-         
-
-
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar    sx={{
+              pr: '24px', // keep right padding when drawer closed
+              
+            }}>
+             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+             SRI  LAKSHMI  HEAVENS  PG
+          </Typography>
+         <Link to="/back" > <LogoutIcon /></Link>
         </Toolbar>
+        
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+        }}
+      >
         <DrawerHeader >
-          <IconButton onClick={handleDrawerClose}> 
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
         </DrawerHeader>
         <Divider />
-
         <ListItem button>
           <ListItemIcon>
-            <DashboardIcon />
+           
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
         <Link to="/form" style={{ textDecoration: 'none' }} color='default'>
         <ListItem button>
           <ListItemIcon>
-            <FormatListNumberedRtlIcon />
+           
           </ListItemIcon>
-          <ListItemText primary="Application Form" />
+          <ListItemText primary="Guest Check-in" />
         </ListItem>
         </Link>
         <ListItem button>
           <ListItemIcon>
-            <ArticleIcon />
           </ListItemIcon>
           <ListItemText primary="NoticeList" />
         </ListItem>
+        <Link to="/transaction" style={{ textDecoration: 'none' }} color='default'>
         <ListItem button>
           <ListItemIcon>
-            <BookIcon />
+          
           </ListItemIcon>
-          <ListItemText primary="Reports" />
+          <ListItemText primary="Transaction details" />
         </ListItem>
+        </Link>
+        <Link to="/userdetails" style={{ textDecoration: 'none' }} color='default'>
         <ListItem button>
           <ListItemIcon>
-            <ReceiptIcon />
+            
+          </ListItemIcon>
+          <ListItemText primary="Guest details" />
+        </ListItem>
+        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            
           </ListItemIcon>
           <ListItemText primary="Receipt" /> 
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LogoutIcon />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
-        </ListItem>
+        
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
+        <Grid >
+        <Dashboard/>
+        </Grid>
       </Box>
+     
     </Box>
   );
 }
