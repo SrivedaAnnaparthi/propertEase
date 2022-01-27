@@ -36,7 +36,7 @@ export default function Dashboard() {
             <CardContent>
 
               <Typography variant="h5" component="div">
-                total beds
+                Total beds
               </Typography>
               <Typography variant="h6" color="text. primary">
                 103
@@ -51,7 +51,7 @@ export default function Dashboard() {
           <Card sx={{ maxWidth: 250,maxHeight: 300,backgroundColor: "lightgreen"  }}>
             <CardContent>
               <Typography variant="h5" component="div">
-                available beds
+                Available beds
               </Typography>
               <Typography variant="h6" color="text. primary">
                 107
@@ -65,7 +65,7 @@ export default function Dashboard() {
           <Card sx={{ maxWidth: 250,maxHeight: 300  ,backgroundColor: "lightgreen" }}>
             <CardContent>
               <Typography variant="h5" component="div">
-                due payments
+                Due payments
               </Typography>
               <Typography variant="h6" color="text. primary">
                 109

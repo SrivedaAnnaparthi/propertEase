@@ -16,7 +16,7 @@ import { Typography } from '@mui/material';
 import Dashboard from '../Components/DashboardComponents';
 import { Tooltip } from '@mui/material';
 // import LoginPage from './LoginPage';
-import TransactionDetails from './TransactionDetails';
+import Transaction from './TransactionDetails';
 import GuestDetails from './GuestDetails';
 import Form from './Form';
 import NoticeList from './NoticeList';
@@ -25,7 +25,7 @@ import Receipt from './Receipt';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -81,6 +81,7 @@ const Drawer = styled(MuiDrawer)(
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
+    start:'edge',
     ...(open && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme),
@@ -155,7 +156,7 @@ export default function MiniDrawer() {
               <ListItemIcon>
 
               </ListItemIcon>
-              <ListItemText primary="Transaction Details" />
+              <ListItemText primary="Transaction" />
             </ListItem>
           </Link>
           <Divider/>
@@ -183,7 +184,7 @@ export default function MiniDrawer() {
         <Routes>
           <Route exact path="/home" element={<Dashboard />} />
           <Route exact path="/form" element={<Form />} />
-          <Route exact path="/transaction" element={<TransactionDetails />} />
+          <Route exact path="/transaction" element={<Transaction />} />
           <Route exact path="/userdetails" element={<GuestDetails />} />
           <Route exact path="/Noticelist" element={<NoticeList />} />
           <Route exact path="/receipt" element={<Receipt />} />

@@ -6,7 +6,7 @@ app.use(express.json());
 
  connectToMongo();
 
- app.use('/info',infoRoutes);
+ app.use('/api/info',infoRoutes);
 
 app.get('/', (req, res) => res.send("Welcome To API Home"));
 
