@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled,  } from '@mui/material/styles';
+import { styled, } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -9,11 +9,20 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Grid } from '@mui/material';
+// import { Grid } from '@mui/material';
 import { Typography } from '@mui/material';
 import Dashboard from '../Components/DashboardComponents';
+import { Tooltip } from '@mui/material';
+// import LoginPage from './LoginPage';
+import TransactionDetails from './TransactionDetails';
+import GuestDetails from './GuestDetails';
+import Form from './Form';
+import NoticeList from './NoticeList';
+import Receipt from './Receipt';
+// import { lightGreen } from '@mui/material/colors';
+
 
 
 const drawerWidth = 240;
@@ -66,7 +75,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer )(
+const Drawer = styled(MuiDrawer)(
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
@@ -85,83 +94,103 @@ const Drawer = styled(MuiDrawer )(
 
 export default function MiniDrawer() {
   return (
-   < Box sx={{ flexGrow: 1, }} >
-      <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar    sx={{
-              pr: '24px', // keep right padding when drawer closed
-              
-            }}>
-             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-             SRI  LAKSHMI  HEAVENS  PG
-          </Typography>
-         <Link to="/back" > <LogoutIcon /></Link>
-        </Toolbar>
-        
-      </AppBar>
+    < div >
 
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-        }}
-      >
-        <DrawerHeader >
-        </DrawerHeader>
-        <Divider />
-        <ListItem button>
-          <ListItemIcon>
-           
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <Link to="/form" style={{ textDecoration: 'none' }} color='default'>
-        <ListItem button>
-          <ListItemIcon>
-           
-          </ListItemIcon>
-          <ListItemText primary="Guest Check-in" />
-        </ListItem>
-        </Link>
-        <ListItem button>
-          <ListItemIcon>
-          </ListItemIcon>
-          <ListItemText primary="NoticeList" />
-        </ListItem>
-        <Link to="/transaction" style={{ textDecoration: 'none' }} color='default'>
-        <ListItem button>
-          <ListItemIcon>
-          
-          </ListItemIcon>
-          <ListItemText primary="Transaction details" />
-        </ListItem>
-        </Link>
-        <Link to="/userdetails" style={{ textDecoration: 'none' }} color='default'>
-        <ListItem button>
-          <ListItemIcon>
-            
-          </ListItemIcon>
-          <ListItemText primary="Guest details" />
-        </ListItem>
-        </Link>
-        <ListItem button>
-          <ListItemIcon>
-            
-          </ListItemIcon>
-          <ListItemText primary="Receipt" /> 
-        </ListItem>
+      <div>
+        <CssBaseline />
+        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+          <Toolbar sx={{
+            // keep right padding when drawer closed
+
+          }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            SRI LAKSHMI HEAVENS PG
+            </Typography>
+            <Tooltip title="logout"><Link to="/" style={{ color: '#FFF' }} > <LogoutIcon /></Link></Tooltip>
+          </Toolbar>
+
+        </AppBar>
+      </div>
+      <div>
+        <Drawer
+          variant="permanent"
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          }}
+        >
+          <DrawerHeader 
+          >
+          </DrawerHeader>
+          <Divider />
+          <Link to="/home" style={{ textDecoration: 'none', }}   >
+            <ListItem button>
+              <ListItemIcon>
+
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          </Link>
+          <Divider/>
+          <Link to="/form" style={{ textDecoration: 'none' }} color='default'>
+            <ListItem button>
+              <ListItemIcon>
+
+              </ListItemIcon>
+              <ListItemText primary="Guest Check-In" />
+            </ListItem>
+          </Link>
+          <Divider/>
+          <Link to="/NoticeList" style={{ textDecoration: 'none' }} color='default'>
+          <ListItem button>
+            <ListItemIcon>
+            </ListItemIcon>
+            <ListItemText primary="NoticeList" />
+          </ListItem>
+          </Link>
+          <Divider/>
+          <Link to="/transaction" style={{ textDecoration: 'none' }} color='default'>
+            <ListItem button>
+              <ListItemIcon>
+
+              </ListItemIcon>
+              <ListItemText primary="Transaction Details" />
+            </ListItem>
+          </Link>
+          <Divider/>
+          <Link to="/userdetails" style={{ textDecoration: 'none' }} color='default'>
+            <ListItem button>
+              <ListItemIcon>
+
+              </ListItemIcon>
+              <ListItemText primary="Guest Details" />
+            </ListItem>
+          </Link>
+          <Divider/>
+          <Link to="/receipt" style={{ textDecoration: 'none', }} color='default'>
+          <ListItem button>
+            <ListItemIcon>
+
+            </ListItemIcon>
+            <ListItemText primary="Receipt" />
+          </ListItem>
+          </Link>
+          <Divider/>
+        </Drawer>
+      </div>
+      <Box component="main" sx={{ flexGrow: 1, paddingTop: 12 }}>
+        <Routes>
+          <Route exact path="/home" element={<Dashboard />} />
+          <Route exact path="/form" element={<Form />} />
+          <Route exact path="/transaction" element={<TransactionDetails />} />
+          <Route exact path="/userdetails" element={<GuestDetails />} />
+          <Route exact path="/Noticelist" element={<NoticeList />} />
+          <Route exact path="/receipt" element={<Receipt />} />
         
-        <Divider />
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Grid >
-        <Dashboard/>
-        </Grid>
+        </Routes>
       </Box>
-     
-    </Box>
+
+    </div >
   );
 }
